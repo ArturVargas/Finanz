@@ -22,4 +22,5 @@ func main() {
 /*
 	gin.Default() devuelve una instancia de gin engine con los registros de
 	gin.DefaultWriter y el middleware de recuperacion y conectado.
+	donde recibe los endpoints
 */
