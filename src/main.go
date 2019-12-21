@@ -3,49 +3,19 @@ package main
 import (
 	"fmt"
 
-	"./controllers"
+	config "./Config"
+	controllers "./Controllers"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
-var db *gorm.DB
-
-//DB initial Struct Config
-type DBConfig struct {
-	Host     string
-	Port     int
-	User     string
-	DBName   string
-	Password string
-}
-
-func buildDBConfig() *DBConfig {
-	dbConfig := DBConfig{
-		Host:     "golmer.db.elephantsql.com",
-		Port:     5462,
-		User:     "gjdmtzuo",
-		DBName:   "gjdmtzuo",
-		Password: "",
-	}
-	return &dbConfig
-}
-
-func dbURL(dbConfig *DBConfig) string {
-	return fmt.Sprintf(
-		"%s:%s@tcp(%s:%d)/%s?charset=utf8&parseTime=True&loc=Local",
-		dbConfig.User,
-		dbConfig.Password,
-		dbConfig.Host,
-		dbConfig.Port,
-		dbConfig.DBName,
-	)
-}
+var db = config.DB
 
 func main() {
 	fmt.Println("Test go..!")
 
-	db, err := gorm.Open("postgres", dbURL(buildDBConfig()))
+	db, err := gorm.Open("postgres", config.DbURL(config.BuildDBConfig()))
 	if err != nil {
 		fmt.Println("dbStatus: ", err)
 	}
@@ -53,9 +23,7 @@ func main() {
 	defer db.Close()
 
 	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{"message": "pong"})
-	})
+
 	r.GET("/register", controllers.Register)
 	r.Run()
 }
