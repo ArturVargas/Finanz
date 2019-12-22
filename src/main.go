@@ -5,6 +5,7 @@ import (
 
 	config "./Config"
 	controllers "./Controllers"
+	models "./Models"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
@@ -22,9 +23,12 @@ func main() {
 
 	defer db.Close()
 
+	db.AutoMigrate(&models.User{})
+
 	r := gin.Default()
 
-	r.GET("/register", controllers.Register)
+	r.POST("/register", controllers.Register)
+	r.GET("/login/:id", controllers.Login)
 	r.Run()
 }
 
