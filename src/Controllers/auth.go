@@ -17,8 +17,9 @@ func Register(c *gin.Context) {
 	if err != nil {
 		c.AbortWithStatus(http.StatusBadRequest)
 	} else {
-		fmt.Println(&user)
+		fmt.Println(&user.Password)
 		db.Create(&user)
+		user.Password = ""
 		c.JSON(http.StatusOK, &user)
 	}
 }
