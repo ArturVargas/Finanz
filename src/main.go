@@ -16,7 +16,7 @@ func main() {
 	router := gin.Default()
 
 	router.POST("/register", controllers.Register)
-	router.GET("/login/:id", controllers.Login)
+	router.POST("/login", controllers.Login)
 	router.GET("/benefits", controllers.Benefits)
 	router.GET("/obligations", controllers.ObInfo)
 	router.POST("/benefit", controllers.CreateBenefit)
