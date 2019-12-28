@@ -10,6 +10,8 @@ Les mostrará la lista de gastos que pueden deducir dependiendo el Regimen y Gir
 * [GORM](https://gorm.io/docs/).
 * [ElephantSql](https://www.elephantsql.com/).
 * [Go extension](ms-vscode.go).
+* [JWT](https://github.com/dgrijalva/jwt-go).
+* [Bcrypt](https://godoc.org/golang.org/x/crypto/bcrypt)
 
 
 ## Referencias
@@ -19,3 +21,4 @@ Les mostrará la lista de gastos que pueden deducir dependiendo el Regimen y Gir
 * [Go with PostgreSQL](https://www.youtube.com/watch?v=-QJyT5lbQjI&list=WL&index=89)
 * [SAT ISR](https://www.sat.gob.mx/ordenamiento/18355/ley-del-impuesto-sobre-la-renta)
 * [SAT Deducciones Personales](https://www.sat.gob.mx/consulta/23972/conoce-las-deducciones-personales)
+* [Web App with Go Gin & React](https://www.freecodecamp.org/news/how-to-build-a-web-app-with-go-gin-and-react-cffdc473576/)
