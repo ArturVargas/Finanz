@@ -2,12 +2,24 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"os"
+
+	"github.com/joho/godotenv"
 
 	config "./Config"
 	controllers "./Controllers"
 	middlewares "./Middlewares"
 	"github.com/gin-gonic/gin"
 )
+
+func init() {
+	err := godotenv.Load(".env")
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
+}
 
 func main() {
 
@@ -32,5 +44,6 @@ func main() {
 	router.GET("/benefits", controllers.Benefits)
 	router.GET("/obligations", controllers.ObInfo)
 
-	router.Run()
+	PORT := os.Getenv("PORT")
+	router.Run(":" + PORT)
 }

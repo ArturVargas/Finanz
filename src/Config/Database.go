@@ -3,6 +3,7 @@ package config
 import (
 	"fmt"
 	"log"
+	"os"
 
 	models "../Models"
 	"github.com/jinzhu/gorm"
@@ -19,9 +20,9 @@ var err error
 func Init() {
 	Host := "otto.db.elephantsql.com"
 	Port := "5432"
-	User := "gjdmtzuo"
-	DBName := "gjdmtzuo"
-	Password := ""
+	User := os.Getenv("DB_NAME")
+	DBName := os.Getenv("DB_NAME")
+	Password := os.Getenv("DB_PASS")
 
 	dbInfo := fmt.Sprintf("user=%s password=%s host=%s port=%s dbname=%s sslmode=disable",
 		User,
