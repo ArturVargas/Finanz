@@ -2,6 +2,7 @@ package utils
 
 import (
 	"fmt"
+	"os"
 	"strings"
 	"time"
 
@@ -18,7 +19,7 @@ func CreateToken(userID uint, userName, userEmail string) (string, error) {
 	claims["name"] = userName
 	claims["exp"] = time.Now().Add(time.Hour * 3).Unix() // El token expira en 3hrs
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	return token.SignedString([]byte("MySecretSeed")) // El Secret debe ir en las variables de entorno
+	return token.SignedString([]byte(os.Getenv("JWT_SECRET")))
 }
 
 //ExtractToken for split token
@@ -38,7 +39,7 @@ func VerifyToken(c *gin.Context) error {
 		if _, ok := tkn.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("Token no valido: %v", tkn.Header["alg"])
 		}
-		return []byte("MySecretSeed"), nil
+		return []byte(os.Getenv("JWT_SECRET")), nil
 	})
 	if err != nil {
 		return err

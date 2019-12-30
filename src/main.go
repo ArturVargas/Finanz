@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
 
@@ -23,7 +22,6 @@ func init() {
 
 func main() {
 
-	fmt.Println("Test go..!")
 	config.Init()
 
 	router := gin.Default()
