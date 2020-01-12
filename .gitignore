@@ -20,5 +20,6 @@
 ### Go Patch ###
 /vendor/
 /Godeps/
+/pkg
 
 # End of https://www.gitignore.io/api/go
